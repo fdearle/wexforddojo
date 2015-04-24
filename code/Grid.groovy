@@ -51,5 +51,17 @@ class Grid {
         else
             return false
     }
+    
+    boolean canBlock(player) {
+        false
+    }
+    
+    boolean canTakeCorner(player) {
+        false
+    }
+    
+    boolean canTakeCenter(player) {
+        false
+    }
 
 }
