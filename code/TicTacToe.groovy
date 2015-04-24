@@ -4,6 +4,16 @@ def grid = [
 ' ',' ',' ',
 ' ',' ',' '
 ]
+def rows = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [6,4,2]
+]
 
 def x
 for (number in 1..10){
@@ -46,16 +56,6 @@ def showGrid(grid) {
     println '  +-----------+  +-----------+'
 }
 
-def rows = [
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [6,4,2]
-]
 
 boolean isSolved(grid, rows) {
     // If the row is not a space the its either X or O

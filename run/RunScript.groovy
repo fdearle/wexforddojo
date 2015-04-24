@@ -62,9 +62,6 @@ if(args) {
 	def shell = new GroovyShell(binding)
     def scriptFile = new File(args[0])
     def scriptName = scriptFile.toPath().fileName.toString()
-        println "Starting ${args[0]} ==========================================="
-        println ()
-        println ()
     try {
         shell.evaluate(scriptFile)
     } catch (MultipleCompilationErrorsException mce) {
@@ -82,9 +79,6 @@ if(args) {
             println "At line: ${element.lineNumber} of ${element.fileName}"
 
     }
-        println ()
-        println ()
-        println "Finished ${args[0]} ==========================================="
 }
 else
 	println "Usage: RunScript <script>"
