@@ -32,7 +32,7 @@ if(args) {
 	   readLine(message).toString()
 	}
 
-	binding.readnum = { message ->
+	binding.readnum = { String message ->
            int result
            boolean success = false
            while (!success) {
