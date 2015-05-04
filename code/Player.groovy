@@ -1,11 +1,11 @@
 
 class Player extends GroovyKids {
     public String name
-    public String OxO
+    public String player
     
-    def Player(String name, String OxO) {
+    def Player(String name, String player) {
         this.name = name
-        this.OxO = OxO
+        this.player = player
     }
     
     def playRound(grid) {
@@ -21,6 +21,6 @@ class Player extends GroovyKids {
             }
         }
         
-        grid[x] = OxO
+        grid[x] = player
     }
 }

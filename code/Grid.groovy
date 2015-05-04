@@ -46,14 +46,20 @@ class Grid {
     }
     
     boolean canWin(player) {
-        if (grid[0] == player && grid[1] == player && grid[2] == ' ')
-            return true
-        else
-            return false
+        rows.find { cells ->
+            (grid[cells[0]] == player && grid[cells[1]] == player && grid[cells[2]] == ' ') ||
+            (grid[cells[0]] == player && grid[cells[2]] == player && grid[cells[1]] == ' ') ||
+            (grid[cells[1]] == player && grid[cells[2]] == player && grid[cells[0]])
+        }
     }
     
     boolean canBlock(player) {
-        false
+        def oponent = player == 'X' ? 'O' : 'X'
+        rows.find { cells ->
+            (grid[cells[0]] == oponent && grid[cells[1]] == oponent && grid[cells[2]] == ' ') ||
+            (grid[cells[0]] == oponent && grid[cells[2]] == oponent && grid[cells[1]] == ' ') ||
+            (grid[cells[1]] == oponent && grid[cells[2]] == oponent && grid[cells[0]])
+        }
     }
     
     boolean canTakeCorner(player) {
@@ -63,5 +69,48 @@ class Grid {
     boolean canTakeCenter(player) {
         false
     }
+    
+    def playRandomCell(player) {
+        def random = new Random()
+        def x = random.nextInt 10
+        while(grid[x] != ' ')
+            x = random.nextInt 10
+        grid[x] = player
+    }
+    
+    def playNextFreeCell(player) {
+        def x = 0
+        while(grid[x] != ' ' && x < 10)
+            x = x + 1
+        grid[x] = player
+    }
 
+    def playBlock(player) {
+        def oponent = player == 'X' ? 'O' : 'X'
+        def blockable = rows.find { cells ->
+            (grid[cells[0]] == oponent && grid[cells[1]] == oponent && grid[cells[2]] == ' ') ||
+            (grid[cells[0]] == oponent && grid[cells[2]] == oponent && grid[cells[1]] == ' ') ||
+            (grid[cells[1]] == oponent && grid[cells[2]] == oponent && grid[cells[0]] == ' ')
+        }
+        if (blockable) {
+            def x = blockable.find { index ->
+                grid[index] == ' '
+            }
+            grid[x] = player
+        }
+    }
+    
+    def playWin(player) {
+        def winable = rows.find { cells ->
+            (grid[cells[0]] == player && grid[cells[1]] == player && grid[cells[2]] == ' ') ||
+            (grid[cells[0]] == player && grid[cells[2]] == player && grid[cells[1]] == ' ') ||
+            (grid[cells[1]] == player && grid[cells[2]] == player && grid[cells[0]] == ' ')
+        }
+        if (winable) {
+            def x = winable.find { index ->
+                grid[index] == ' '
+            }
+            grid[x] = player
+        }
+    }
 }

@@ -1,15 +1,11 @@
 class RandomPlayer extends Player {
-    def RandomPlayer(String name, String OxO) {
-        super(name,OxO)
+    def RandomPlayer(String name, String player) {
+        super(name,player)
     }
     
     def playRound(grid) {
         if (!grid.isSolved()) {
-            def random = new Random()
-            def x = random.nextInt 10
-            while(grid[x] != ' ')
-                x = random.nextInt 10
-            grid[x] = this.OxO
+            grid.playRandomCell this.player
         }
         sleep(1000)
     }
